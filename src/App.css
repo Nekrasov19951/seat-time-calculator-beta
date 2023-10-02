@@ -36,3 +36,109 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-size: 18px;
+}
+
+p {
+  font-size: 0.9rem;
+  margin-bottom: 0rem;
+}
+
+/* Блок с полями для ввода */
+.InputsBlock {
+}
+
+.Inputs {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+
+.InputsBlock-Input_container {
+  display: flex;
+}
+
+.CC_Inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-row {
+  background: #d9d9d9;
+  padding: 1rem 0;
+  margin: 1rem 0;
+}
+
+.header-row {
+  text-align: center;
+}
+
+.Inputfield {
+  margin-bottom: 0.5rem;
+}
+
+.InputWithDD {
+  display: flex;
+}
+
+.block-header,
+.main-header {
+  font-size: 1.5rem;
+}
+
+.main-header {
+  border: solid;
+  border-width: 0px 0px 1px 0px;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+input,
+select {
+  height: 30px;
+}
+
+.select-div {
+  margin-left: 1rem;
+}
+
+.add-button {
+  height: 30px;
+}
+
+.total {
+  min-height: 100px;
+  align-items: center;
+  display: inline-flex;
+  min-width: 50%;
+  max-width: 100%;
+  overflow-x: auto;
+  width: fit-content;
+  background-color: #e0b0fe;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.Inter-Totals {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.inter-total-div {
+  width: 50%;
+}
+
+.inter-total-div .result {
+  min-height: 100px;
+  min-width: 50%;
+  max-width: 90%;
+  overflow-x: auto;
+  width: 90%;
+  background-color: #fef6b0;
+  align-items: center;
+  display: inline-flex;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+
+}
