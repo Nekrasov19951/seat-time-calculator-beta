@@ -11,7 +11,7 @@ const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 const initialState = [
-  { day: "понеделник", nofWH: 8.4, employment: 90.234, payment: 300 },
+  { day: "понеде", nofWH: 8.4, employment: 90.234, payment: 300 },
   { day: "понедельник", nofWH: "", employment: 90.234, payment: 300 },
   { total: "привет" },
 ];
