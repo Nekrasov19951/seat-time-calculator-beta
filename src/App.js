@@ -6,6 +6,35 @@ import "./App.css";
 import convertToTime from "./components/ConvertToTime";
 import resultObject from "./components/ResultObject";
 
+
+let ButtonExport = () => {
+  return (
+    <button className="exportbutton">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+</svg>
+    </button>
+  )
+}
+
+window.onclick = function (event) {
+  if (!event.target.matches('.dropbtn')) {
+
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var dropbuttons = document.getElementsByClassName("dropbtn");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+              dropbuttons[i].classList.remove('bordered');
+          }
+      }
+  }
+}
+
+
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
@@ -214,26 +243,26 @@ let CommonDiv = ({ obj }) => {
       <div className="row">      
         
       <div className="col-3">
-        <div>
+        <div className="text">
         <span className="main-header">Text</span>
         
         <p>Enter the number of words per hour</p>
-        <input onChange={(event) => {SetwordsPH(event.target.value) }}/>
+        <input type="text" autocomplete="off" onChange={(event) => {SetwordsPH(event.target.value) }}/>
         <p>Number of words</p>
-        <InterimResult obj={obj.text} change={SetTotalText} wph={wordsPH} ResultObjectComp={'Text'}/>
+        <InterimResult obj={obj.text} change={SetTotalText} wph={wordsPH} ResultObjectComp={'Text'} withtimebelow={true}/>
         </div>
         <div>
         <span className="block-header">Quiz</span>
           <p>Minutes</p>
-        <InterimResult obj={obj.quiz} quiz={true} change={SetTotalQuiz} ResultObjectComp={'Quiz'}/>
+        <InterimResult obj={obj.quiz} quiz={true} change={SetTotalQuiz} ResultObjectComp={'Quiz'} withtimebelow={true}/>
         </div>
         <div>
         <span className="block-header">Video</span>
           <p>Duration in sec</p>
-        <InterimResult obj={obj.video} change={SetTotalVideo} addButton={true} coef={true} arrofcoef={[1, 1.5, 2, 2.5, 3, 3.5, 4]} ResultObjectComp={'Video'}/>
+        <InterimResult obj={obj.video} change={SetTotalVideo} addButton={true} coef={true} arrofcoef={[1, 1.5, 2, 2.5, 3, 3.5, 4]} ResultObjectComp={'Video'} />
         </div>
       </div>
-      <div className="col-6 CC">
+      <div className="col-5 CC">
         <div>
           <span className="main-header">Curated Content</span>
         </div>
@@ -252,7 +281,7 @@ let CommonDiv = ({ obj }) => {
         </div>
 
       </div>
-      <div className="col-3">
+      <div className="col-4">
         <div>
           <span className="main-header">Calculations</span>
         </div>
@@ -275,7 +304,7 @@ let CommonDiv = ({ obj }) => {
         <div>
         <span className="main-header">Export</span>
         <p>Click the button below to export</p>
-          <ExcelFile element={<button>Export</button>}>
+          <ExcelFile element={<ButtonExport />}>
             <ExcelSheet dataSet={multiDataSet} name="Organization" />
           </ExcelFile>
         </div>

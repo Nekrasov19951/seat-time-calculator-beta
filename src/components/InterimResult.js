@@ -3,6 +3,9 @@ import { Input } from "./InputFieldSimple";
 import resultObject from "./ResultObject";
 import convertToTime from "./ConvertToTime";
 
+
+
+
 let Addbutton = ({ addinput }) => {
   return (
     <div>
@@ -11,9 +14,55 @@ let Addbutton = ({ addinput }) => {
   );
 };
 
-
-
 let SelectCoef = ({changeCoef, i, arrOfOptions, changeinputDisplay}) => {
+  let [DD, SetDD] = useState('1');
+
+  function toggleDropDown(event) {
+    let target = event.target;
+    if (event.target.tagName !== 'SPAN') {
+      let par = target.parentElement;
+      par.querySelector('.dropdown-content').classList.toggle("show");
+      par.querySelector('.dropbtn').classList.toggle('bordered');
+
+    }
+}
+
+  return (
+    
+    <div className="dropdown"  onClick={(e)=> toggleDropDown(e)}>
+    <button  
+      className="dropbtn">
+      {DD}
+      {/* <svg class="transformed"
+        width="12"
+        height="7"
+        viewBox="0 0 12 7"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0.251051 0.256282C0.585786 -0.0854272 1.1285 -0.0854272 1.46323 0.256282L6 4.88756L10.5368 0.256282C10.8715 -0.0854272 11.4142 -0.0854272 11.7489 0.256282C12.0837 0.59799 12.0837 1.15201 11.7489 1.49372L6.60609 6.74372C6.27136 7.08543 5.72864 7.08543 5.39391 6.74372L0.251051 1.49372C-0.0836838 1.15201 -0.0836838 0.59799 0.251051 0.256282Z"
+         
+        />
+      </svg> */}
+    </button>
+    <div id="myDropdown" className="dropdown-content">
+      {arrOfOptions.map((el, num)=> {
+                return (
+                    <span  onClick={() => {changeCoef(i, el)
+                      changeinputDisplay(el)
+                      SetDD(el)}
+                  } key={num}>{el}</span>
+                )
+                
+            })}
+    </div>
+  </div>
+  )
+}
+
+/* let SelectCoef = ({changeCoef, i, arrOfOptions, changeinputDisplay}) => {
     return (
         <div className="select-div">
         <select onChange={(event) => {changeCoef(i, event.target.value)
@@ -29,9 +78,9 @@ let SelectCoef = ({changeCoef, i, arrOfOptions, changeinputDisplay}) => {
         </div>
 
     )
-}
+}  */
 
-let InputsBlock = ({coef, changeInput, changeSelect, changeWPH, i, arrOfOptions, wph, changeinputDisplay, quiz}) => {
+let InputsBlock = ({coef, changeInput, changeSelect, changeWPH, i, arrOfOptions, wph, changeinputDisplay, quiz, withtimebelow}) => {
   let [Coefficient, SetCoefficient] = useState('1')
 
 
@@ -40,7 +89,7 @@ let InputsBlock = ({coef, changeInput, changeSelect, changeWPH, i, arrOfOptions,
 
         return (
             <div className="InputWithDD">
-                <Input i={i} change={changeInput} coef={Coefficient}/>
+                <Input i={i} change={changeInput} coef={Coefficient} withtimebelow={withtimebelow}/>
                 <SelectCoef changeCoef={changeSelect} i={i} arrOfOptions={arrOfOptions} changeinputDisplay={SetCoefficient}/>
                 </div>
         )
@@ -50,7 +99,7 @@ let InputsBlock = ({coef, changeInput, changeSelect, changeWPH, i, arrOfOptions,
       return (
         <>
        
-        <Input i={i} change={changeInput} coef={parseFloat(3600/wph)}/>        
+        <Input i={i} change={changeInput} coef={parseFloat(3600/wph)} withtimebelow={withtimebelow}/>        
         </>
           
 
@@ -59,7 +108,7 @@ let InputsBlock = ({coef, changeInput, changeSelect, changeWPH, i, arrOfOptions,
 
     else {
         return (
-            <Input i={i} change={changeInput} coef={'1'} quiz={quiz}/>
+            <Input i={i} change={changeInput} coef={'1'} quiz={quiz} withtimebelow={withtimebelow}/>
         )
     }
 }
@@ -67,7 +116,7 @@ let InputsBlock = ({coef, changeInput, changeSelect, changeWPH, i, arrOfOptions,
 
 
 
-export function InterimResult({ obj, change, addButton, coef, arrofcoef, wph, ResultObjectComp, quiz}) {
+export function InterimResult({ obj, change, addButton, coef, arrofcoef, wph, ResultObjectComp, quiz, withtimebelow}) {
 
   let changedFiled = ResultObjectComp;
   let InterimArr = obj;
@@ -269,7 +318,7 @@ export function InterimResult({ obj, change, addButton, coef, arrofcoef, wph, Re
             {
                 ArrayForMap.map((el, i) => {
                     return (
-                        <InputsBlock key={i} coef={coef} wph={wph} changeSelect={setCoef}  changeInput={changeArr} i={i} arrOfOptions={arrofcoef} quiz={quiz}/>
+                        <InputsBlock key={i} coef={coef} wph={wph} changeSelect={setCoef}  changeInput={changeArr} i={i} arrOfOptions={arrofcoef} quiz={quiz} withtimebelow={withtimebelow}/>
                     )
                 })
             }

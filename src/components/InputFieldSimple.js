@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import convertToTime from "./ConvertToTime";
 import { anotherFormat } from "./ConvertToTime";
 
-export function Input ({change, i, coef, quiz}) {
+export function Input ({change, i, coef, quiz, withtimebelow}) {
+    
     let [inputValue, SetinputValue] = useState(0)
 
     return (
@@ -13,7 +14,10 @@ export function Input ({change, i, coef, quiz}) {
             
             console.log('я таргет value ', event.target.value)
             }}/>
-        <p style={{textAlign: 'right'}}>{quiz ? anotherFormat(parseFloat(coef*inputValue*60)) : anotherFormat(parseFloat(coef*inputValue))}</p>
+            {
+                withtimebelow==true ? '' : <p style={{textAlign: 'right'}}>{quiz ? anotherFormat(parseFloat(coef*inputValue*60)) : anotherFormat(parseFloat(coef*inputValue))}</p>
+            }
+        
          </div>
     )
 }
